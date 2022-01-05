@@ -1,0 +1,517 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2022-01-05T15:08:50.776225+02:00",
+            "magic": "34eac5a46ba0685dc481b55fbfd5127dc254ac41a1dabeb9c93da788146e79af",
+            "version": "v3.21.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "danstanciu90",
+                "project": "pulumi-test",
+                "stack": "gwStack"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::pulumi:pulumi:Stack::pulumi-test-gwStack",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "outputs": {
+                    "endpointUrl": "https://qxt4hyniyd.execute-api.eu-west-1.amazonaws.com/stage/"
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::aws-provider-us-east-1",
+                "custom": true,
+                "id": "07a47b78-c33e-437c-bd57-64d2c9a81aa1",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "profile": "saml",
+                    "region": "us-east-1",
+                    "skipCredentialsValidation": "true",
+                    "skipGetEc2Platforms": "true",
+                    "skipMetadataApiCheck": "true",
+                    "skipRegionValidation": "true",
+                    "version": "4.0.0"
+                },
+                "outputs": {
+                    "profile": "saml",
+                    "region": "us-east-1",
+                    "skipCredentialsValidation": "true",
+                    "skipGetEc2Platforms": "true",
+                    "skipMetadataApiCheck": "true",
+                    "skipRegionValidation": "true",
+                    "version": "4.0.0"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::pulumi:pulumi:Stack::pulumi-test-gwStack",
+                "propertyDependencies": {
+                    "profile": null,
+                    "region": null,
+                    "skipCredentialsValidation": null,
+                    "skipGetEc2Platforms": null,
+                    "skipMetadataApiCheck": null,
+                    "skipRegionValidation": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "custom": false,
+                "type": "aws:apigateway:x:API",
+                "parent": "urn:pulumi:gwStack::pulumi-test::pulumi:pulumi:Stack::pulumi-test-gwStack"
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:acm/certificate:Certificate::testapi-ssl-cert",
+                "custom": true,
+                "id": "arn:aws:acm:us-east-1:133349643013:certificate/e571b73a-7cb6-4fe5-8fad-5b57c9f49ce0",
+                "type": "aws:acm/certificate:Certificate",
+                "inputs": {
+                    "__defaults": [],
+                    "domainName": "testapi.playportal.pp-dev.apps.legogroup.io",
+                    "validationMethod": "DNS"
+                },
+                "outputs": {
+                    "arn": "arn:aws:acm:us-east-1:133349643013:certificate/e571b73a-7cb6-4fe5-8fad-5b57c9f49ce0",
+                    "certificateAuthorityArn": "",
+                    "domainName": "testapi.playportal.pp-dev.apps.legogroup.io",
+                    "domainValidationOptions": [
+                        {
+                            "domainName": "testapi.playportal.pp-dev.apps.legogroup.io",
+                            "resourceRecordName": "_600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io.",
+                            "resourceRecordType": "CNAME",
+                            "resourceRecordValue": "_88a036d597b041f14c95ce324e68b77f.nxntxfsdbd.acm-validations.aws."
+                        }
+                    ],
+                    "id": "arn:aws:acm:us-east-1:133349643013:certificate/e571b73a-7cb6-4fe5-8fad-5b57c9f49ce0",
+                    "options": {
+                        "certificateTransparencyLoggingPreference": "ENABLED"
+                    },
+                    "status": "PENDING_VALIDATION",
+                    "subjectAlternativeNames": [],
+                    "tags": {},
+                    "validationEmails": [],
+                    "validationMethod": "DNS"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::pulumi:pulumi:Stack::pulumi-test-gwStack",
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::aws-provider-us-east-1::07a47b78-c33e-437c-bd57-64d2c9a81aa1",
+                "propertyDependencies": {
+                    "domainName": null,
+                    "validationMethod": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0",
+                "custom": true,
+                "id": "cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "region": "eu-west-1",
+                    "version": "4.0.0"
+                },
+                "outputs": {
+                    "region": "eu-west-1",
+                    "version": "4.0.0"
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/role:Role::test-apif337a862",
+                "custom": true,
+                "id": "test-apif337a862-10a73e0",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Effect\":\"Allow\",\"Sid\":\"\"}]}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "test-apif337a862-10a73e0",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::133349643013:role/test-apif337a862-10a73e0",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2022-01-05T13:08:15Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "test-apif337a862-10a73e0",
+                    "inlinePolicies": [
+                        {
+                            "name": "",
+                            "policy": ""
+                        }
+                    ],
+                    "managedPolicyArns": [],
+                    "maxSessionDuration": 3600,
+                    "name": "test-apif337a862-10a73e0",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROAR6DCCCMCXS5LQ2R3X"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/rolePolicyAttachment:RolePolicyAttachment::test-apif337a862-lambdaFullAccessCopyAttachment",
+                "custom": true,
+                "id": "test-apif337a862-10a73e0-20220105130819196300000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
+                    "role": "test-apif337a862-10a73e0"
+                },
+                "outputs": {
+                    "id": "test-apif337a862-10a73e0-20220105130819196300000001",
+                    "policyArn": "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
+                    "role": "test-apif337a862-10a73e0"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/role:Role::test-apif337a862"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/role:Role::test-apif337a862"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862",
+                "custom": true,
+                "id": "test-apif337a862-638451b",
+                "type": "aws:lambda/function:Function",
+                "inputs": {
+                    "__defaults": [
+                        "memorySize",
+                        "name",
+                        "packageType",
+                        "publish",
+                        "reservedConcurrentExecutions"
+                    ],
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "8e38bbd4ed40012a533e8bf049493b9064240793ac0e3fc39243d5bf649511d0",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1 }) {\n\nreturn (event) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n    var _a;\n    const route = (_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.route;\n    const body = event.body ? JSON.parse(event.body) : undefined;\n    console.log('Received body: ', body);\n    yield Promise.resolve(() =\u003e {\n        console.log('promise resolved');\n    });\n    return {\n        statusCode: 200,\n        body: JSON.stringify({\n            route,\n            affirmation: \"Nice job, you've done it! :D\",\n            requestBodyEcho: body,\n        }),\n    };\n});\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            }
+                        },
+                        "hash": "7e1a1354596228339c438faa09d8a783e19956c26755b2dd648e2442f7d4067c"
+                    },
+                    "handler": "__index.handler",
+                    "memorySize": 128,
+                    "name": "test-apif337a862-638451b",
+                    "packageType": "Zip",
+                    "publish": false,
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::133349643013:role/test-apif337a862-10a73e0",
+                    "runtime": "nodejs12.x",
+                    "timeout": 180
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000}}",
+                    "arn": "arn:aws:lambda:eu-west-1:133349643013:function:test-apif337a862-638451b",
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "8e38bbd4ed40012a533e8bf049493b9064240793ac0e3fc39243d5bf649511d0",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1 }) {\n\nreturn (event) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n    var _a;\n    const route = (_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.route;\n    const body = event.body ? JSON.parse(event.body) : undefined;\n    console.log('Received body: ', body);\n    yield Promise.resolve(() =\u003e {\n        console.log('promise resolved');\n    });\n    return {\n        statusCode: 200,\n        body: JSON.stringify({\n            route,\n            affirmation: \"Nice job, you've done it! :D\",\n            requestBodyEcho: body,\n        }),\n    };\n});\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            }
+                        },
+                        "hash": "7e1a1354596228339c438faa09d8a783e19956c26755b2dd648e2442f7d4067c"
+                    },
+                    "codeSigningConfigArn": "",
+                    "deadLetterConfig": null,
+                    "description": "",
+                    "environment": null,
+                    "fileSystemConfig": null,
+                    "handler": "__index.handler",
+                    "id": "test-apif337a862-638451b",
+                    "imageConfig": null,
+                    "imageUri": "",
+                    "invokeArn": "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:133349643013:function:test-apif337a862-638451b/invocations",
+                    "kmsKeyArn": "",
+                    "lastModified": "2022-01-05T13:08:28.784+0000",
+                    "layers": [],
+                    "memorySize": 128,
+                    "name": "test-apif337a862-638451b",
+                    "packageType": "Zip",
+                    "publish": false,
+                    "qualifiedArn": "arn:aws:lambda:eu-west-1:133349643013:function:test-apif337a862-638451b:$LATEST",
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::133349643013:role/test-apif337a862-10a73e0",
+                    "runtime": "nodejs12.x",
+                    "signingJobArn": "",
+                    "signingProfileVersionArn": "",
+                    "sourceCodeHash": "U1t2mEOUaBXbyIbQ30kT4dzWttRUKSjyCL6dhi6e19o=",
+                    "sourceCodeSize": 774,
+                    "tags": {},
+                    "timeout": 180,
+                    "tracingConfig": {
+                        "mode": "PassThrough"
+                    },
+                    "version": "$LATEST",
+                    "vpcConfig": null
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/role:Role::test-apif337a862"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "code": null,
+                    "handler": null,
+                    "role": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:iam/role:Role::test-apif337a862"
+                    ],
+                    "runtime": null,
+                    "timeout": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api",
+                "custom": true,
+                "id": "qxt4hyniyd",
+                "type": "aws:apigateway/restApi:RestApi",
+                "inputs": {
+                    "__defaults": [
+                        "minimumCompressionSize"
+                    ],
+                    "binaryMediaTypes": [
+                        "*/*"
+                    ],
+                    "body": "{\"swagger\":\"2.0\",\"info\":{\"title\":\"test-api\",\"version\":\"1.0\"},\"paths\":{\"/activities\":{\"get\":{\"x-amazon-apigateway-integration\":{\"uri\":\"arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:133349643013:function:test-apif337a862-638451b/invocations\",\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\"}}}},\"x-amazon-apigateway-binary-media-types\":[\"*/*\"],\"x-amazon-apigateway-gateway-responses\":{\"MISSING_AUTHENTICATION_TOKEN\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}},\"ACCESS_DENIED\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}}},\"x-amazon-apigateway-api-key-source\":\"HEADER\"}",
+                    "minimumCompressionSize": -1,
+                    "name": "test-api"
+                },
+                "outputs": {
+                    "apiKeySource": "HEADER",
+                    "arn": "arn:aws:apigateway:eu-west-1::/restapis/qxt4hyniyd",
+                    "binaryMediaTypes": [
+                        "*/*"
+                    ],
+                    "body": "{\"swagger\":\"2.0\",\"info\":{\"title\":\"test-api\",\"version\":\"1.0\"},\"paths\":{\"/activities\":{\"get\":{\"x-amazon-apigateway-integration\":{\"uri\":\"arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:133349643013:function:test-apif337a862-638451b/invocations\",\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\"}}}},\"x-amazon-apigateway-binary-media-types\":[\"*/*\"],\"x-amazon-apigateway-gateway-responses\":{\"MISSING_AUTHENTICATION_TOKEN\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}},\"ACCESS_DENIED\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}}},\"x-amazon-apigateway-api-key-source\":\"HEADER\"}",
+                    "createdDate": "2022-01-05T13:08:36Z",
+                    "description": "",
+                    "disableExecuteApiEndpoint": false,
+                    "endpointConfiguration": {
+                        "types": "EDGE",
+                        "vpcEndpointIds": []
+                    },
+                    "executionArn": "arn:aws:execute-api:eu-west-1:133349643013:qxt4hyniyd",
+                    "id": "qxt4hyniyd",
+                    "minimumCompressionSize": -1,
+                    "name": "test-api",
+                    "policy": "",
+                    "rootResourceId": "53ok2909ri",
+                    "tags": {}
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "binaryMediaTypes": null,
+                    "body": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862"
+                    ],
+                    "name": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::test-api",
+                "custom": true,
+                "id": "xdc9vr",
+                "type": "aws:apigateway/deployment:Deployment",
+                "inputs": {
+                    "__defaults": [],
+                    "restApi": "qxt4hyniyd",
+                    "stageName": "",
+                    "variables": {
+                        "__defaults": [],
+                        "version": "f53ec087"
+                    }
+                },
+                "outputs": {
+                    "createdDate": "2022-01-05T13:08:40Z",
+                    "description": "",
+                    "executionArn": "arn:aws:execute-api:eu-west-1:133349643013:qxt4hyniyd/",
+                    "id": "xdc9vr",
+                    "invokeUrl": "https://qxt4hyniyd.execute-api.eu-west-1.amazonaws.com/",
+                    "restApi": "qxt4hyniyd",
+                    "variables": {
+                        "version": "f53ec087"
+                    }
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api",
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "restApi": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api"
+                    ],
+                    "stageName": null,
+                    "variables": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api",
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/permission:Permission::test-api-9d3c6f1d",
+                "custom": true,
+                "id": "test-api-9d3c6f1d-7186f8b",
+                "type": "aws:lambda/permission:Permission",
+                "inputs": {
+                    "__defaults": [
+                        "statementId"
+                    ],
+                    "action": "lambda:invokeFunction",
+                    "function": "test-apif337a862-638451b",
+                    "principal": "apigateway.amazonaws.com",
+                    "sourceArn": "arn:aws:execute-api:eu-west-1:133349643013:qxt4hyniyd/*/GET/activities",
+                    "statementId": "test-api-9d3c6f1d-7186f8b"
+                },
+                "outputs": {
+                    "action": "lambda:invokeFunction",
+                    "function": "test-apif337a862-638451b",
+                    "id": "test-api-9d3c6f1d-7186f8b",
+                    "principal": "apigateway.amazonaws.com",
+                    "qualifier": "",
+                    "sourceArn": "arn:aws:execute-api:eu-west-1:133349643013:qxt4hyniyd/*/GET/activities",
+                    "statementId": "test-api-9d3c6f1d-7186f8b"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862",
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::test-api"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "action": null,
+                    "function": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/function:Function::test-apif337a862"
+                    ],
+                    "principal": null,
+                    "sourceArn": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::test-api"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/stage:Stage::test-api",
+                "custom": true,
+                "id": "ags-qxt4hyniyd-stage",
+                "type": "aws:apigateway/stage:Stage",
+                "inputs": {
+                    "__defaults": [],
+                    "deployment": "xdc9vr",
+                    "restApi": "qxt4hyniyd",
+                    "stageName": "stage"
+                },
+                "outputs": {
+                    "accessLogSettings": null,
+                    "arn": "arn:aws:apigateway:eu-west-1::/restapis/qxt4hyniyd/stages/stage",
+                    "cacheClusterEnabled": false,
+                    "cacheClusterSize": "",
+                    "clientCertificateId": "",
+                    "deployment": "xdc9vr",
+                    "description": "",
+                    "documentationVersion": "",
+                    "executionArn": "arn:aws:execute-api:eu-west-1:133349643013:qxt4hyniyd/stage",
+                    "id": "ags-qxt4hyniyd-stage",
+                    "invokeUrl": "https://qxt4hyniyd.execute-api.eu-west-1.amazonaws.com/stage",
+                    "restApi": "qxt4hyniyd",
+                    "stageName": "stage",
+                    "tags": {},
+                    "variables": {},
+                    "xrayTracingEnabled": false
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API::test-api",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:lambda/permission:Permission::test-api-9d3c6f1d",
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::test-api",
+                    "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "deployment": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::test-api"
+                    ],
+                    "restApi": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::test-api"
+                    ],
+                    "stageName": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:gwStack::pulumi-test::aws:route53/record:Record::ssl-cert-validation-dns-record",
+                "custom": true,
+                "id": "Z08201573ODBLNRIX8V6U__600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io._CNAME",
+                "type": "aws:route53/record:Record",
+                "inputs": {
+                    "__defaults": [],
+                    "name": "_600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io.",
+                    "records": [
+                        "_88a036d597b041f14c95ce324e68b77f.nxntxfsdbd.acm-validations.aws."
+                    ],
+                    "ttl": 600,
+                    "type": "CNAME",
+                    "zoneId": "Z08201573ODBLNRIX8V6U"
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"2\"}",
+                    "fqdn": "_600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io",
+                    "id": "Z08201573ODBLNRIX8V6U__600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io._CNAME",
+                    "name": "_600934bc7130fc10e2b17f7ebabd90b3.testapi.playportal.pp-dev.apps.legogroup.io",
+                    "records": [
+                        "_88a036d597b041f14c95ce324e68b77f.nxntxfsdbd.acm-validations.aws."
+                    ],
+                    "ttl": 600,
+                    "type": "CNAME",
+                    "zoneId": "Z08201573ODBLNRIX8V6U"
+                },
+                "parent": "urn:pulumi:gwStack::pulumi-test::pulumi:pulumi:Stack::pulumi-test-gwStack",
+                "dependencies": [
+                    "urn:pulumi:gwStack::pulumi-test::aws:acm/certificate:Certificate::testapi-ssl-cert"
+                ],
+                "provider": "urn:pulumi:gwStack::pulumi-test::pulumi:providers:aws::default_4_0_0::cb6cdce5-9806-48ab-9ca7-4f695b363c09",
+                "propertyDependencies": {
+                    "name": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:acm/certificate:Certificate::testapi-ssl-cert"
+                    ],
+                    "records": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:acm/certificate:Certificate::testapi-ssl-cert"
+                    ],
+                    "ttl": null,
+                    "type": [
+                        "urn:pulumi:gwStack::pulumi-test::aws:acm/certificate:Certificate::testapi-ssl-cert"
+                    ],
+                    "zoneId": null
+                }
+            }
+        ],
+        "pending_operations": [
+            
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll.eslint": true
+  },
+  "eslint.packageManager": "yarn",
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#505050"
+  },
+  "eslint.validate": ["typescript"]
+}

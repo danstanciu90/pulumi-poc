@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "EditorConfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "zengxingxin.sort-js-object-keys",
+    "dbaeumer.vscode-eslint"
+  ]
+}
