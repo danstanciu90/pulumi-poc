@@ -1,6 +1,9 @@
 {
   "name": "pulumi-test",
   "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@pulumi/aws": "4.0.0",
     "@pulumi/aws-apigateway": "0.0.5",

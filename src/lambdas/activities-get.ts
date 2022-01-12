@@ -6,10 +6,12 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 export const handler: aws.lambda.EventHandler<APIGatewayProxyEvent, APIGatewayProxyResult> = async (
   event
 ) => {
-  const route = event.pathParameters?.route;
+  const pathParameters = event.pathParameters;
   const body = event.body ? JSON.parse(event.body) : undefined;
+  const queryStringParams = event.multiValueQueryStringParameters;
 
   console.log('Received body: ', body);
+  console.log('Received pathParameters: ', pathParameters);
 
   await Promise.resolve(() => {
     console.log('promise resolved');
@@ -18,9 +20,11 @@ export const handler: aws.lambda.EventHandler<APIGatewayProxyEvent, APIGatewayPr
   return {
     statusCode: 200,
     body: JSON.stringify({
-      route,
-      affirmation: "Nice job, you've done it! :D",
-      requestBodyEcho: body,
+      message: "Nice job, you've done it! :D",
+      body,
+      pathParameters,
+      queryStringParams,
+      event,
     }),
   };
 };
