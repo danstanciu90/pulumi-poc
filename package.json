@@ -8,7 +8,8 @@
     "@pulumi/aws": "4.0.0",
     "@pulumi/aws-apigateway": "0.0.5",
     "@pulumi/awsx": "0.30.0",
-    "@pulumi/pulumi": "3.0.0"
+    "@pulumi/pulumi": "3.0.0",
+    "aws-sdk": "2.1056.0"
   },
   "devDependencies": {
     "@lego/eslint-config": "7.3.0",
